@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+const bool globalDebuggerFlag = false;
 
 const double globalEdgePadding = 20.0;
 
 const double globalMarginPadding = 10.0;
 
-const Color sixtyUIColor = Colors.white;
+const Color sixtyUIColor = Color(0xFFF8F0E3);
 
-const Color thirtyUIColor = Color(0xFF0E2C71);
+const Color thirtyUIColor = Color(0xFF60B45A);
 
-const Color tenUIColor = Color.fromRGBO(230, 188, 107, 1);
+const Color tenUIColor = Color(0xFFf2970f);
 
-const LinearGradient goldLinearGradient = LinearGradient(
-  begin: Alignment(0, -1),
-  end: Alignment(0, 1),
-  colors: [
-    Color(0xFFFFFF00),
-    Color.fromRGBO(230, 188, 107, 1),
-  ],
+const Duration globalPageViewDuration = Duration(milliseconds: 500);
+
+const double globalAppBarHeight = 100.0;
+
+const double sectionGapPadding = 60.0;
+
+TextStyle heroTitleStyle = GoogleFonts.tinos(
+  textStyle: const TextStyle(fontSize: 49.5, fontWeight: FontWeight.bold),
 );
 
-const LinearGradient blueLinearGradient = LinearGradient(
-  begin: Alignment(0, -1),
-  end: Alignment(0, 1),
-  colors: [
-    Color(0xFF0f2f7b),
-    Color(0xFF0b1f41),
-  ],
+TextStyle heroContentStyle = GoogleFonts.openSans(
+  textStyle: const TextStyle(fontSize: 18.8, height: 2),
 );
-
