@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:solar_web/constants.dart';
 
-class CostSavingElementWidget extends StatelessWidget {
+class ImageTitleContentColumn extends StatelessWidget {
   final Image image;
   final String title;
   final String content;
   final double width;
   final double height;
-  const CostSavingElementWidget(
+  const ImageTitleContentColumn(
       {super.key,
       required this.image,
       required this.title,

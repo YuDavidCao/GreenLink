@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:solar_web/constants.dart';
 import 'package:solar_web/pages/cost_saving_widget.dart';
+import 'package:solar_web/pages/environment_impact_widget.dart';
 import 'package:solar_web/pages/hero_widget.dart';
 import 'package:solar_web/widgets/debugging_layout_widget.dart';
 
@@ -36,16 +37,43 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
+  List<Image> environmentImpactImage = [
+    Image.asset(
+      "assets/images/EnvironmentImpact1.png",
+      fit: BoxFit.cover,
+    ),
+    Image.asset(
+      "assets/images/EnvironmentImpact2.png",
+      fit: BoxFit.cover,
+    ),
+    Image.asset(
+      "assets/images/EnvironmentImpact3.jpg",
+      fit: BoxFit.cover,
+    ),
+  ];
+
   List<String> costSavingTitle = [
     "Lower Your Energy Bills",
     "Protect Against Rising Energy Costs",
     "Invest in Your Home & Future",
   ];
 
+  List<String> environmentImpactTitle = [
+    "Reduce Your Carbon Footprint",
+    "Limit Water Use",
+    "Reduce Pollution",
+  ];
+
   List<String> costSavingContent = [
     "With no monthly electric bill and potential tax credits, homeowners can dramatically reduce their electric bill and potentially even eliminate it altogether.",
     "By producing your own energy, homeowners can reduce their vulnerability to future electricity rate hikes and inflation.",
     "Installing solar panels is an investment in your home and family's future that can boost resale value and provide long-term savings.",
+  ];
+
+  List<String> environmentImpactContent = [
+    "By switching to clean renewable energy, homeowners can help reduce the amount of carbon emissions that contribute to climate change.",
+    "Solar panels use minimal water during operation, which can be particularly beneficial during periods of drought and water scarcity.",
+    "By using clean energy, homeowners help reduce air pollution that can trigger a variety of health problems like asthma, lung cancer, and heart attacks.",
   ];
 
   @override
@@ -109,12 +137,12 @@ class _HomePageState extends State<HomePage> {
                     endIndent: sectionGapPadding,
                   );
                 case 2:
-                  return CostSavingWidget(
+                  return EnvironmentImpactWidget(
                       width: width,
                       height: height,
-                      costSavingImage: costSavingImage,
-                      costSavingTitle: costSavingTitle,
-                      costSavingContent: costSavingContent);
+                      costSavingImage: environmentImpactImage,
+                      costSavingTitle: environmentImpactTitle,
+                      costSavingContent: environmentImpactContent);
                 case 3:
                   return const Divider(
                     thickness: 5,
@@ -122,6 +150,14 @@ class _HomePageState extends State<HomePage> {
                     indent: sectionGapPadding,
                     endIndent: sectionGapPadding,
                   );
+                case 4:
+                  return CostSavingWidget(
+                      width: width,
+                      height: height,
+                      costSavingImage: costSavingImage,
+                      costSavingTitle: costSavingTitle,
+                      costSavingContent: costSavingContent);
+
                 default:
                   return null;
               }

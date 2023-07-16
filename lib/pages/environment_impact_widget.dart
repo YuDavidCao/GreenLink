@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:solar_web/constants.dart';
 import 'package:solar_web/pages/cost_saving_element_widget.dart';
 
-class CostSavingWidget extends StatelessWidget {
-  const CostSavingWidget({
+class EnvironmentImpactWidget extends StatelessWidget {
+  const EnvironmentImpactWidget({
     super.key,
     required this.width,
     required this.height,
@@ -40,7 +40,7 @@ class CostSavingWidget extends StatelessWidget {
                     height: sectionGapPadding,
                   ),
                   Text(
-                    "Cost Savings",
+                    "Environmental Impact",
                     style: GoogleFonts.tinos(
                       textStyle: TextStyle(
                           fontSize: log(width * height) * 3,

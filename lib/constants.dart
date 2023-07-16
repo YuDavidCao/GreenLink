@@ -7,7 +7,7 @@ const double globalEdgePadding = 20.0;
 
 const double globalMarginPadding = 10.0;
 
-const Color sixtyUIColor = Color(0xFFF8F0E3);
+const Color sixtyUIColor = Color(0xFFFFFFFF);
 
 const Color thirtyUIColor = Color(0xFF60B45A);
 
