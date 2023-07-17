@@ -10,21 +10,23 @@ class ImageTitleContentColumn extends StatelessWidget {
   final String content;
   final double width;
   final double height;
+  final double ratio;
   const ImageTitleContentColumn(
       {super.key,
       required this.image,
       required this.title,
       required this.content,
       required this.height,
-      required this.width});
+      required this.width,
+      required this.ratio});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          width: width / 5,
-          height: width / 5,
+          width: width / ratio,
+          height: width / ratio,
           child: image,
         ),
         const SizedBox(
@@ -42,7 +44,7 @@ class ImageTitleContentColumn extends StatelessWidget {
         Text(
           content,
           style: GoogleFonts.openSans(
-            textStyle: TextStyle(fontSize: log(width * height) * 2.5 / 1.618),
+            textStyle: TextStyle(fontSize: log(width * height) * 2.5 / goldenRatio),
           ),
         )
       ],

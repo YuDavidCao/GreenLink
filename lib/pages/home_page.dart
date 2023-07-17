@@ -4,9 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:solar_web/constants.dart';
-import 'package:solar_web/pages/cost_saving_widget.dart';
-import 'package:solar_web/pages/environment_impact_widget.dart';
 import 'package:solar_web/pages/hero_widget.dart';
+import 'package:solar_web/pages/row_of_element_widget.dart';
 import 'package:solar_web/widgets/debugging_layout_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,6 +51,16 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
+  List<Image> installationImage1 = [
+    Image.asset("assets/images/Installation1.png", fit: BoxFit.cover),
+    Image.asset("assets/images/Installation2.jpg", fit: BoxFit.cover),
+  ];
+
+  List<Image> installationImage2 = [
+    Image.asset("assets/images/Installation3.jpg", fit: BoxFit.cover),
+    Image.asset("assets/images/Installation4.jpg", fit: BoxFit.cover),
+  ];
+
   List<String> costSavingTitle = [
     "Lower Your Energy Bills",
     "Protect Against Rising Energy Costs",
@@ -64,6 +73,16 @@ class _HomePageState extends State<HomePage> {
     "Reduce Pollution",
   ];
 
+  List<String> installationTitle1 = [
+    "Roof Analysis",
+    "Sun Exposure",
+  ];
+
+  List<String> installationTitle2 = [
+    "Questions to Ask Solar Panel Installers",
+    'Financing Options',
+  ];
+
   List<String> costSavingContent = [
     "With no monthly electric bill and potential tax credits, homeowners can dramatically reduce their electric bill and potentially even eliminate it altogether.",
     "By producing your own energy, homeowners can reduce their vulnerability to future electricity rate hikes and inflation.",
@@ -74,6 +93,16 @@ class _HomePageState extends State<HomePage> {
     "By switching to clean renewable energy, homeowners can help reduce the amount of carbon emissions that contribute to climate change.",
     "Solar panels use minimal water during operation, which can be particularly beneficial during periods of drought and water scarcity.",
     "By using clean energy, homeowners help reduce air pollution that can trigger a variety of health problems like asthma, lung cancer, and heart attacks.",
+  ];
+
+  List<String> installationContent1 = [
+    "A proper roof analysis is crucial to determining the viability of a solar panel installation for your home, including its condition and age.",
+    "The position and exposure of a roof to the sun can make a big difference in the effectiveness of a solar panel system.",
+  ];
+
+  List<String> installationContent2 = [
+    "Choosing a qualified solar panel installer requires careful research into their credentials, experience, and available financing options.",
+    "Solar panel financing options can be complex, but they can greatly reduce the cost of a panel system and make them an affordable option for many homeowners.",
   ];
 
   @override
@@ -137,7 +166,9 @@ class _HomePageState extends State<HomePage> {
                     endIndent: sectionGapPadding,
                   );
                 case 2:
-                  return EnvironmentImpactWidget(
+                  return RowOfElementWidget(
+                      title: "Environmental Impact",
+                      ratio: 5,
                       width: width,
                       height: height,
                       costSavingImage: environmentImpactImage,
@@ -151,13 +182,39 @@ class _HomePageState extends State<HomePage> {
                     endIndent: sectionGapPadding,
                   );
                 case 4:
-                  return CostSavingWidget(
+                  return RowOfElementWidget(
+                      title: "Cost Savings",
+                      ratio: 5,
                       width: width,
                       height: height,
                       costSavingImage: costSavingImage,
                       costSavingTitle: costSavingTitle,
                       costSavingContent: costSavingContent);
-
+                case 5:
+                  return const Divider(
+                    thickness: 5,
+                    color: thirtyUIColor,
+                    indent: sectionGapPadding,
+                    endIndent: sectionGapPadding,
+                  );
+                case 6:
+                  return RowOfElementWidget(
+                      title: "Evaluating Your Home for Solar Panel Installation",
+                      ratio: 3.5,
+                      width: width,
+                      height: height,
+                      costSavingImage: installationImage1,
+                      costSavingTitle: installationTitle1,
+                      costSavingContent: installationContent1);
+                case 7:
+                  return RowOfElementWidget(
+                      title: "",
+                      ratio: 3.5,
+                      width: width,
+                      height: height,
+                      costSavingImage: installationImage2,
+                      costSavingTitle: installationTitle2,
+                      costSavingContent: installationContent2);
                 default:
                   return null;
               }

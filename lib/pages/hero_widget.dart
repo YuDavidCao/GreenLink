@@ -77,8 +77,8 @@ class HeroWidget extends StatelessWidget {
                                   textStyle: TextStyle(
                                       fontSize: log(width * height) *
                                           3 /
-                                          1.618 /
-                                          1.618,
+                                          goldenRatio /
+                                          goldenRatio,
                                       height: 2),
                                 )),
                           ],

@@ -19,6 +19,8 @@ const double globalAppBarHeight = 100.0;
 
 const double sectionGapPadding = 60.0;
 
+const double goldenRatio = 1.618;
+
 TextStyle heroTitleStyle = GoogleFonts.tinos(
   textStyle: const TextStyle(fontSize: 49.5, fontWeight: FontWeight.bold),
 );
