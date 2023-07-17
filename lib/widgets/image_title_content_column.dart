@@ -11,6 +11,7 @@ class ImageTitleContentColumn extends StatelessWidget {
   final double width;
   final double height;
   final double ratio;
+  final bool onMobile;
   const ImageTitleContentColumn(
       {super.key,
       required this.image,
@@ -18,6 +19,7 @@ class ImageTitleContentColumn extends StatelessWidget {
       required this.content,
       required this.height,
       required this.width,
+      required this.onMobile,
       required this.ratio});
 
   @override
@@ -25,8 +27,8 @@ class ImageTitleContentColumn extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: width / ratio,
-          height: width / ratio,
+          width: (!onMobile) ? width / ratio : width - sectionGapPadding * 2,
+          height: (!onMobile) ? width / ratio : width - sectionGapPadding * 2,
           child: image,
         ),
         const SizedBox(

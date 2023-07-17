@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:solar_web/pages/home_page/home_page.dart';
+import 'package:solar_web/pages/wind_page/wind_page.dart';
 import 'pages.dart';
 
 Future<void> main() async {
@@ -32,9 +34,11 @@ class MyApp extends StatelessWidget {
             900: Color(0xFF60B45A),
           }),
         ),
-        initialRoute: '/HomePage',
+        initialRoute: '/Solar',
         routes: {
-          '/HomePage': (context) => const HomePage(),
+          '/Home': (context) => const Home(),
+          '/Solar': (context) => const SolarPage(),
+          '/Wind': (context) => const WindPage(),
         },
       ),
     );
