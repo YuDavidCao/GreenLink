@@ -81,18 +81,18 @@ class _SolarPageState extends State<SolarPage> {
                 ratio: 3.5,
                 width: width,
                 height: height,
-                costSavingImage: installationImage1,
-                costSavingTitle: installationTitle1,
-                costSavingContent: installationContent1),
+                groupImage: installationImage1,
+                groupTitle: installationTitle1,
+                groupContent: installationContent1),
             ElementGroupWidget(
                 title: "",
                 onMobile: onMobile,
                 ratio: 3.5,
                 width: width,
                 height: height,
-                costSavingImage: installationImage2,
-                costSavingTitle: installationTitle2,
-                costSavingContent: installationContent2),
+                groupImage: installationImage2,
+                groupTitle: installationTitle2,
+                groupContent: installationContent2),
           ],
         ),
       );
@@ -121,9 +121,9 @@ class _SolarPageState extends State<SolarPage> {
                   ratio: 3.5,
                   width: width,
                   height: height,
-                  costSavingImage: installationImage1,
-                  costSavingTitle: installationTitle1,
-                  costSavingContent: installationContent1),
+                  groupImage: installationImage1,
+                  groupTitle: installationTitle1,
+                  groupContent: installationContent1),
             if (!onMobile)
               ElementGroupWidget(
                   onMobile: onMobile,
@@ -131,9 +131,9 @@ class _SolarPageState extends State<SolarPage> {
                   ratio: 3.5,
                   width: width,
                   height: height,
-                  costSavingImage: installationImage2,
-                  costSavingTitle: installationTitle2,
-                  costSavingContent: installationContent2),
+                  groupImage: installationImage2,
+                  groupTitle: installationTitle2,
+                  groupContent: installationContent2),
             if (onMobile)
               ElementGroupWidget(
                   onMobile: onMobile,
@@ -141,9 +141,9 @@ class _SolarPageState extends State<SolarPage> {
                   ratio: 3.5,
                   width: width,
                   height: height,
-                  costSavingImage: installationImage1 + installationImage2,
-                  costSavingTitle: installationTitle1 + installationTitle2,
-                  costSavingContent:
+                  groupImage: installationImage1 + installationImage2,
+                  groupTitle: installationTitle1 + installationTitle2,
+                  groupContent:
                       installationContent1 + installationContent2),
           ],
         ),

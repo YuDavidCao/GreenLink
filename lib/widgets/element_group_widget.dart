@@ -14,9 +14,9 @@ class ElementGroupWidget extends StatelessWidget {
     required this.ratio,
     required this.onMobile,
     required this.title,
-    required this.costSavingImage,
-    required this.costSavingTitle,
-    required this.costSavingContent,
+    required this.groupImage,
+    required this.groupTitle,
+    required this.groupContent,
   });
 
   final String title;
@@ -24,9 +24,9 @@ class ElementGroupWidget extends StatelessWidget {
   final bool onMobile;
   final double width;
   final double height;
-  final List<Image> costSavingImage;
-  final List<String> costSavingTitle;
-  final List<String> costSavingContent;
+  final List<Image> groupImage;
+  final List<String> groupTitle;
+  final List<String> groupContent;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class ElementGroupWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ...costSavingImage
+                        ...groupImage
                             .mapIndexed((int index, Image element) => SizedBox(
                                   width: width / ratio,
                                   child: ImageTitleContentColumn(
@@ -70,8 +70,8 @@ class ElementGroupWidget extends StatelessWidget {
                                       height: height,
                                       ratio: ratio,
                                       image: element,
-                                      title: costSavingTitle[index],
-                                      content: costSavingContent[index]),
+                                      title: groupTitle[index],
+                                      content: groupContent[index]),
                                 ))
                             .toList(),
                       ],
@@ -104,7 +104,7 @@ class ElementGroupWidget extends StatelessWidget {
             const SizedBox(
               height: sectionGapPadding,
             ),
-            ...costSavingImage
+            ...groupImage
                 .mapIndexed((int index, Image element) => SizedBox(
                       width: width - sectionGapPadding * 2,
                       child: Padding(
@@ -116,8 +116,8 @@ class ElementGroupWidget extends StatelessWidget {
                             height: height,
                             ratio: ratio,
                             image: element,
-                            title: costSavingTitle[index],
-                            content: costSavingContent[index]),
+                            title: groupTitle[index],
+                            content: groupContent[index]),
                       ),
                     ))
                 .toList()

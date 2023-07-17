@@ -28,3 +28,7 @@ TextStyle heroTitleStyle = GoogleFonts.tinos(
 TextStyle heroContentStyle = GoogleFonts.openSans(
   textStyle: const TextStyle(fontSize: 18.8, height: 2),
 );
+
+const int paginationConstant = 5;
+
+const int searchPaginationMultiplier = 10;

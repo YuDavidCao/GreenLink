@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:solar_web/constants.dart';
+import 'package:solar_web/widgets/debugging_layout_widget.dart';
 
 class HomeHero extends StatelessWidget {
   const HomeHero({
@@ -30,70 +31,56 @@ class HomeHero extends StatelessWidget {
         child: Stack(
           children: [
             Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  height: min(height, width / 2),
-                  width: min(height, width / 2),
-                  decoration: (globalDebuggerFlag)
-                      ? BoxDecoration(border: Border.all(color: Colors.black))
-                      : null,
-                  // height: 100,
-                  // width: 100,
-                  child: Lottie.asset('assets/animation/home_hero_animation.json'),
-                )),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  height: min(height, width / 2),
-                  width: min(height, width / 2),
-                  decoration: (globalDebuggerFlag)
-                      ? BoxDecoration(border: Border.all(color: Colors.black))
-                      : null,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                alignment: Alignment.center,
+                child:
+                    Lottie.asset('assets/animation/home_hero_animation.json')),
+            DebuggingLayoutWidget(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Flexible(
+                    flex: 2,
+                    child: SizedBox(),
+                  ),
+                  Flexible(
+                    flex: 4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Flexible(
-                          flex: 2,
-                          child: SizedBox(),
+                        const SizedBox(
+                          height: sectionGapPadding,
                         ),
-                        Flexible(
-                          flex: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                heroTitleString,
-                                style: GoogleFonts.tinos(
-                                  textStyle: TextStyle(
-                                      fontSize: log(width * height) * 3,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const Divider(
-                                thickness: 5,
-                                color: tenUIColor,
-                              ),
-                              Text(heroContentString,
-                                  style: GoogleFonts.openSans(
-                                    textStyle: TextStyle(
-                                        fontSize: log(width * height) *
-                                            3 /
-                                            goldenRatio /
-                                            goldenRatio,
-                                        height: 2),
-                                  )),
-                            ],
+                        Text(
+                          heroTitleString,
+                          style: GoogleFonts.tinos(
+                            textStyle: TextStyle(
+                                fontSize: log(width * height) * 3,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                        const Flexible(
-                          child: SizedBox(),
+                        const Divider(
+                          thickness: 5,
+                          color: tenUIColor,
                         ),
+                        Text(heroContentString,
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: log(width * height) *
+                                      3 /
+                                      goldenRatio /
+                                      goldenRatio,
+                                  height: 2),
+                            )),
                       ],
                     ),
                   ),
-                )),
+                  const Flexible(
+                    child: SizedBox(),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       );
@@ -104,6 +91,9 @@ class HomeHero extends StatelessWidget {
         child: Column(
           children: [
             Lottie.asset('assets/animation/home_hero_animation.json'),
+            const SizedBox(
+              height: sectionGapPadding,
+            ),
             Text(
               heroTitleString,
               style: GoogleFonts.tinos(

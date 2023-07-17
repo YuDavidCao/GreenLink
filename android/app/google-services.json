@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "672579198545",
+    "project_id": "greenlink-1b0c1",
+    "storage_bucket": "greenlink-1b0c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672579198545:android:5e352f3ea9d5e8d0d16270",
+        "android_client_info": {
+          "package_name": "com.example.solar_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672579198545-a59g2d1m2liiflgaq0vk68j44q0dv2e7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCg4mP_OupzC3unN9jTwA4dIfjUX2RnsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672579198545-a59g2d1m2liiflgaq0vk68j44q0dv2e7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
