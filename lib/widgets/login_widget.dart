@@ -3,22 +3,31 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:solar_web/constants.dart';
+import 'package:solar_web/controller/user_state.dart';
+import 'package:solar_web/firebase/firebase_auth_service.dart';
 
 void popupForm(BuildContext context, double width, double height,
-    GlobalKey<FormState> formKey) {
+    GlobalKey<FormState> formKey) async {
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repeatPasswordController =
+      TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  showDialog(
+  await showDialog(
       context: context,
       builder: (BuildContext context) {
         return LoginDialog(
-            width: width,
-            height: height,
-            formKey: formKey,
-            emailController: emailController,
-            passwordController: passwordController);
+          width: width,
+          height: height,
+          formKey: formKey,
+          emailController: emailController,
+          passwordController: passwordController,
+          repeatPasswordController: repeatPasswordController,
+        );
       });
+  passwordController.dispose();
+  emailController.dispose();
 }
 
 class LoginDialog extends StatefulWidget {
@@ -29,6 +38,7 @@ class LoginDialog extends StatefulWidget {
     required this.formKey,
     required this.emailController,
     required this.passwordController,
+    required this.repeatPasswordController,
   });
 
   final double width;
@@ -36,6 +46,7 @@ class LoginDialog extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final TextEditingController repeatPasswordController;
 
   @override
   State<LoginDialog> createState() => _LoginDialogState();
@@ -43,6 +54,7 @@ class LoginDialog extends StatefulWidget {
 
 class _LoginDialogState extends State<LoginDialog> {
   bool failed = false;
+  bool login = true;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +73,7 @@ class _LoginDialogState extends State<LoginDialog> {
             child: Column(
               children: [
                 SelectableText(
-                  "Login",
+                  (login) ? "Login" : "Sign up",
                   style: GoogleFonts.openSans(
                       textStyle: TextStyle(
                           fontSize: (widget.width > widget.height) ? 30 : 18.5,
@@ -98,6 +110,32 @@ class _LoginDialogState extends State<LoginDialog> {
                   keyboardType: TextInputType.multiline,
                   validator: (val) => val!.isEmpty ? 'Cannot be blank' : null,
                 ),
+                if (!login)
+                  SizedBox(
+                    width: 1,
+                    height: (widget.width > widget.height)
+                        ? globalEdgePadding
+                        : globalMarginPadding,
+                  ),
+                if (!login)
+                  TextFormField(
+                    controller: widget.repeatPasswordController,
+                    textAlignVertical: TextAlignVertical.top,
+                    decoration: const InputDecoration(
+                        isDense: true,
+                        labelText: 'repeat your password',
+                        border: OutlineInputBorder()),
+                    keyboardType: TextInputType.multiline,
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return 'Cannot be blank';
+                      } else if (widget.passwordController.text !=
+                          widget.repeatPasswordController.text) {
+                        return 'Password doesn\'t match';
+                      }
+                      return null;
+                    },
+                  ),
                 SizedBox(
                   width: 1,
                   height: (widget.width > widget.height)
@@ -109,15 +147,24 @@ class _LoginDialogState extends State<LoginDialog> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (widget.formKey.currentState!.validate()) {
-                        if (await _loginWithEmailAndPassword(
-                            context,
-                            widget.emailController.text,
-                            widget.passwordController.text)) {
-                          Navigator.of(context).pop();
+                        if (login) {
+                          bool successful = await FirebaseAuthService
+                              .loginWithEmailAndPassword(
+                                  context,
+                                  widget.emailController.text,
+                                  widget.passwordController.text);
+                          if (mounted && successful) {
+                            Navigator.pop(context);
+                          }
                         } else {
-                          setState(() {
-                            failed = true;
-                          });
+                          bool successful = await FirebaseAuthService
+                              .signupWithEmailAndPassword(
+                                  context,
+                                  widget.emailController.text,
+                                  widget.passwordController.text);
+                          if (mounted && successful) {
+                            Navigator.pop(context);
+                          }
                         }
                       }
                     },
@@ -142,6 +189,19 @@ class _LoginDialogState extends State<LoginDialog> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: globalEdgePadding,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      login = !login;
+                    });
+                  },
+                  child: Text((login)
+                      ? "Don't have an account? Sign up here!"
+                      : "Already have an account? Log in here!"),
+                ),
                 if (failed)
                   const Text(
                     "Login Failed",
@@ -157,21 +217,4 @@ class _LoginDialogState extends State<LoginDialog> {
       ),
     );
   }
-}
-
-Future<bool> _loginWithEmailAndPassword(
-    BuildContext context, String email, String password) async {
-  try {
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    // Successful login, you can navigate to the next screen or do any other logic here.
-  } catch (e) {
-    // Handle login errors (e.g., invalid credentials, user not found, etc.)
-    print('Error: $e');
-    // You can show a snackbar, alert dialog, or any other error handling UI here.
-  }
-  return FirebaseAuth.instance.currentUser != null;
 }

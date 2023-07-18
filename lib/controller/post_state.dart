@@ -25,6 +25,8 @@ class PostState extends ChangeNotifier {
         .orderBy('time', descending: true);
     _sortedBy = "time";
     _tags = [];
+    onInitPostPage();
+    resetSearchCondition();
   }
 
   void search(String searchTerm, List<String> tags) async {

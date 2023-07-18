@@ -27,6 +27,7 @@ class FirebaseFirestoreService {
       //testing print(e);
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to upload the post')));
+      print(e);
       return null;
     }
   }
@@ -40,8 +41,8 @@ class FirebaseFirestoreService {
         .delete();
   }
 
-    static void deletePost(
-      String docId, String documentUserEmail, bool haveImage) async {
+  static void deletePost(
+      String docId, String documentUserEmail) async {
     FirebaseFirestore.instance.collection("Post").doc(docId).delete();
     final snapshot = await FirebaseFirestore.instance
         .collection("Comment")
@@ -52,11 +53,19 @@ class FirebaseFirestoreService {
       await doc.reference.delete();
     }
     FirebaseFirestore.instance.collection("Comment").doc(docId).delete();
-    if (haveImage) {
-      FirebaseStorage.instance
-          .ref()
-          .child("image/Post/$docId/$documentUserEmail")
-          .delete();
-    }
+  }
+
+  static void upvote(String userEmail, String docId) {
+    FirebaseFirestore.instance.collection("Post").doc(docId).update({
+      "upvoted": FieldValue.arrayUnion([userEmail]),
+      "upvote": FieldValue.increment(1),
+    });
+  }
+
+  static void cancelUpvote(String userEmail, String docId) {
+    FirebaseFirestore.instance.collection("Post").doc(docId).update({
+      "upvoted": FieldValue.arrayRemove([userEmail]),
+      "upvote": FieldValue.increment(-1),
+    });
   }
 }

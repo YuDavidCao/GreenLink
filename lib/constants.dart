@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const bool globalDebuggerFlag = false;
+const bool globalDebuggerFlag = true;
 
 const double globalEdgePadding = 20.0;
 
@@ -29,6 +29,6 @@ TextStyle heroContentStyle = GoogleFonts.openSans(
   textStyle: const TextStyle(fontSize: 18.8, height: 2),
 );
 
-const int paginationConstant = 5;
+const int paginationConstant = 50;
 
-const int searchPaginationMultiplier = 10;
+const int searchPaginationMultiplier = 100;
