@@ -1,0 +1,195 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:solar_web/constants.dart';
+import 'package:solar_web/controller/time_ticking_state.dart';
+import 'package:solar_web/controller/utilities.dart';
+import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:solar_web/pages/community_page/comment_form.dart';
+import 'package:solar_web/pages/community_page/edit_form.dart';
+import 'package:solar_web/widgets/upvote_button.dart';
+
+class PostCard extends StatefulWidget {
+  final String title;
+  final String content;
+  final String currentUserEmail;
+  final String documentUserEmail;
+  final DateTime time;
+  final String documentId;
+  final int upvote;
+  final List<dynamic> tags;
+  final bool alreadyUpvoted;
+  final bool colorFlag;
+
+  const PostCard(
+      {Key? key,
+      required this.documentId,
+      required this.title,
+      required this.content,
+      required this.time,
+      required this.currentUserEmail,
+      required this.documentUserEmail,
+      required this.upvote,
+      required this.tags,
+      required this.colorFlag,
+      required this.alreadyUpvoted})
+      : super(key: key);
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  bool onComment = false;
+  bool onEdit = false;
+
+  //TODO -> Duplicated code
+  showAlertDialog(BuildContext context) {
+    Widget cancelButton = TextButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: const Text("Yes"),
+      onPressed: () {
+        FirebaseFirestoreService.deletePost(
+            widget.documentId, widget.documentUserEmail);
+        Navigator.pop(context);
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      content: const Text("Are you sure you want to delete the post?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (onEdit) {
+      return EditForm(
+        documentId: widget.documentId,
+        title: widget.title,
+        content: widget.content,
+        cancelEditing: () {
+          setState(() {
+            onEdit = false;
+          });
+        },
+      );
+    } else {
+      return Container(
+        padding: const EdgeInsets.all(globalEdgePadding),
+        margin: const EdgeInsets.all(globalEdgePadding),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: thirtyUIColor, width: 3)),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  direction: Axis.horizontal,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          color: Colors.indigo,
+                        ),
+                        text: "${widget.documentUserEmail} ",
+                      ),
+                    ),
+                    Consumer<TimeTickingState>(
+                      builder:
+                          (context, TimeTickingState timeTickingState, child) {
+                        return Text(
+                          " ${Utilities.convertToTimeAgo(widget.time)}",
+                          style: const TextStyle(
+                              fontSize: 13, color: Colors.black),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: globalMarginPadding,
+                ),
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 15),
+                ),
+                Text(
+                  widget.content,
+                  style: const TextStyle(height: 1.5),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    //testing - Text(widget.upvote.toString()),
+                    IconButton(
+                        onPressed: () async {
+                          setState(() {
+                            onComment = !onComment;
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.chat_bubble_outline,
+                        )),
+                    UpvoteButton(
+                        key: UniqueKey(),
+                        alreadyUpvoted: widget.alreadyUpvoted,
+                        documentId: widget.documentId,
+                        currentUserEmail: widget.currentUserEmail),
+                    if (widget.documentUserEmail == widget.currentUserEmail)
+                      IconButton(
+                          onPressed: () async {
+                            setState(() {
+                              onEdit = !onEdit;
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.mode_edit_outlined,
+                          )),
+                    if (widget.documentUserEmail == widget.currentUserEmail)
+                      IconButton(
+                          onPressed: () {
+                            showAlertDialog(context);
+                          },
+                          icon: const Icon(
+                            Icons.delete_outline,
+                          )),
+                  ],
+                ),
+                if (onComment)
+                  CommentForm(
+                    documentId: widget.documentId,
+                    cancelComment: () {
+                      setState(() {
+                        onComment = false;
+                      });
+                    },
+                  ),
+                // const Divider(
+                //   thickness: 3,
+                //   color: thirtyUIColor,
+                // )
+              ],
+            ),
+          ),
+        ]),
+      );
+    }
+  }
+}

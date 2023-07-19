@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:solar_web/controller/adding_state.dart';
 import 'package:solar_web/controller/post_state.dart';
 import 'package:solar_web/controller/time_ticking_state.dart';
 import 'package:solar_web/controller/user_state.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PostState()),
         ChangeNotifierProvider(create: (_) => UserState()),
         ChangeNotifierProvider(create: (_) => TimeTickingState ()),
+        ChangeNotifierProvider(create: (_) => AddingState ()),
       ],
       child: GestureDetector(
         onTap: () {

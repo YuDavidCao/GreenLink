@@ -41,8 +41,7 @@ class FirebaseFirestoreService {
         .delete();
   }
 
-  static void deletePost(
-      String docId, String documentUserEmail) async {
+  static void deletePost(String docId, String documentUserEmail) async {
     FirebaseFirestore.instance.collection("Post").doc(docId).delete();
     final snapshot = await FirebaseFirestore.instance
         .collection("Comment")
@@ -66,6 +65,30 @@ class FirebaseFirestoreService {
     FirebaseFirestore.instance.collection("Post").doc(docId).update({
       "upvoted": FieldValue.arrayRemove([userEmail]),
       "upvote": FieldValue.increment(-1),
+    });
+  }
+
+  static postComment(String postDocumentId, String content, String userEmail,
+      DateTime time) async {
+    await FirebaseFirestore.instance
+        .collection("Comment")
+        .doc(postDocumentId)
+        .set({
+      "postDocumentId": postDocumentId,
+    });
+    FirebaseFirestore.instance
+        .collection("Comment")
+        .doc(postDocumentId)
+        .collection("Comment")
+        .add({"content": content, "userEmail": userEmail, "time": time});
+  }
+
+  static void updatePostData(
+      String documentId, String title, String content, bool haveImage) {
+    FirebaseFirestore.instance.collection("Post").doc(documentId).update({
+      "title": title,
+      "content": content,
+      "haveImage": haveImage,
     });
   }
 }
