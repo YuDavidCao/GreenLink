@@ -45,7 +45,6 @@ class _CommentFormState extends State<CommentForm> {
                       commentController.text,
                       Provider.of<UserState>(context, listen: false).email,
                       DateTime.now());
-                  widget.cancelComment();
                 }
               },
               icon: const Icon(
@@ -63,7 +62,6 @@ class _CommentFormState extends State<CommentForm> {
               commentController.text,
               Provider.of<UserState>(context, listen: false).email,
               DateTime.now());
-          widget.cancelComment();
         }
       },
       keyboardType: TextInputType.multiline,

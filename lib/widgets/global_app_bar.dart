@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:solar_web/constants.dart';
+import 'package:solar_web/controller/user_state.dart';
+import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:solar_web/widgets/change_profile_info_popup.dart';
 
 PreferredSizeWidget globalAppBar(
-    double width, bool onMobile, BuildContext context) {
+    double width, bool onMobile, BuildContext context, double height) {
   double textFontSize = (!onMobile) ? 30 : 18;
   double appBarGap = (!onMobile) ? sectionGapPadding : globalMarginPadding;
+  double iconSized = (!onMobile) ? 36 : 24;
   return AppBar(
     toolbarHeight: (!onMobile) ? globalAppBarHeight : globalAppBarHeight / 2,
     title: Row(
@@ -13,10 +18,10 @@ PreferredSizeWidget globalAppBar(
         Row(
           children: [
             SizedBox(
-              width: width / 6,
+              width: (!onMobile) ? width / 6 : globalEdgePadding,
             ),
             Text(
-              "SolarGuide",
+              "GreenLink",
               style: TextStyle(fontSize: textFontSize, color: Colors.white),
             )
           ],
@@ -73,7 +78,36 @@ PreferredSizeWidget globalAppBar(
                       TextStyle(fontSize: textFontSize, color: Colors.white)),
             ),
             SizedBox(
-              width: width * 6 / 31,
+              width: appBarGap,
+            ),
+            Column(
+              children: [
+                IconButton(
+                    onPressed: () async {
+                      final GlobalKey<FormState> formKey =
+                          GlobalKey<FormState>();
+                      changeProfileInfoPopup(
+                          context,
+                          width,
+                          height,
+                          formKey,
+                          await FirebaseFirestoreService.getUserName(
+                              Provider.of<UserState>(context, listen: false)
+                                  .email));
+                    },
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: iconSized,
+                    )),
+                if (!onMobile)
+                  const SizedBox(
+                    height: 10,
+                  ),
+              ],
+            ),
+            SizedBox(
+              width: (!onMobile) ? width / 6 : globalEdgePadding,
             ),
           ],
         )

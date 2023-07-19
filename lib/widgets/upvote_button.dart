@@ -3,10 +3,12 @@ import 'package:solar_web/firebase/firebase_firestore_service.dart';
 
 class UpvoteButton extends StatefulWidget {
   final bool alreadyUpvoted;
+  final int upvote;
   final String documentId;
   final String currentUserEmail;
   const UpvoteButton(
       {required this.alreadyUpvoted,
+      required this.upvote,
       required this.documentId,
       required this.currentUserEmail,
       super.key});
@@ -27,27 +29,39 @@ class _UpvoteButtonState extends State<UpvoteButton> {
   @override
   Widget build(BuildContext context) {
     if (!alreadyUpvoted) {
-      return IconButton(
-          onPressed: () {
-            FirebaseFirestoreService.upvote(widget.currentUserEmail, widget.documentId);
-            setState(() {
-              alreadyUpvoted = true;
-            });
-          },
-          icon: const Icon(
-            Icons.thumb_up_outlined,
-          ));
+      return Row(
+        children: [
+          IconButton(
+              onPressed: () {
+                FirebaseFirestoreService.upvote(
+                    widget.currentUserEmail, widget.documentId);
+                setState(() {
+                  alreadyUpvoted = true;
+                });
+              },
+              icon: const Icon(
+                Icons.thumb_up_outlined,
+              )),
+          Text(widget.upvote.toString())
+        ],
+      );
     } else {
-      return IconButton(
-          onPressed: () {
-            FirebaseFirestoreService.cancelUpvote(widget.currentUserEmail, widget.documentId);
-            setState(() {
-              alreadyUpvoted = false;
-            });
-          },
-          icon: const Icon(
-            Icons.thumb_up,
-          ));
+      return Row(
+        children: [
+          IconButton(
+              onPressed: () {
+                FirebaseFirestoreService.cancelUpvote(
+                    widget.currentUserEmail, widget.documentId);
+                setState(() {
+                  alreadyUpvoted = false;
+                });
+              },
+              icon: const Icon(
+                Icons.thumb_up,
+              )),
+          Text(widget.upvote.toString())
+        ],
+      );
     }
   }
 }

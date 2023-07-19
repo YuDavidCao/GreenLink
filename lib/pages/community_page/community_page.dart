@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:solar_web/controller/adding_state.dart';
 import 'package:solar_web/controller/post_state.dart';
 import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
 import 'package:solar_web/pages/community_page/post_card.dart';
 import 'package:solar_web/pages/community_page/post_form.dart';
 import 'package:solar_web/widgets/global_app_bar.dart';
@@ -40,7 +39,7 @@ class _CommunityState extends State<Community> {
     bool onMobile = width < height;
     if (!onMobile) {
       return Scaffold(
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: Center(
           child: SizedBox(
             width: width * 2 / 3,
@@ -72,6 +71,7 @@ class _CommunityState extends State<Community> {
                         key: UniqueKey(),
                         documentId: data.id,
                         title: data['title'],
+                        documentUserName: data["username"],
                         content: data['content'],
                         time: data['time'].toDate(),
                         currentUserEmail: userState.email,

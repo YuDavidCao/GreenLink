@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:solar_web/firebase/firebase_firestore_service.dart';
 
 class FirebaseAuthService {
   static Future<bool> loginWithEmailAndPassword(
@@ -33,6 +34,11 @@ class FirebaseAuthService {
       // Handle signup errors (e.g., weak password, email already in use, etc.)
       print('Error: $e');
       // You can show a snackbar, alert dialog, or any other error handling UI here.
+    }
+    if (FirebaseAuth.instance.currentUser != null) {
+      FirebaseFirestoreService.addUserData(
+          FirebaseAuth.instance.currentUser!.email ?? "",
+          FirebaseAuth.instance.currentUser!.uid);
     }
     return FirebaseAuth.instance.currentUser != null;
   }

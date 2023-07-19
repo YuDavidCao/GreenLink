@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
     if (!onMobile) {
       return Scaffold(
         backgroundColor: sixtyUIColor,
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [
             HomeHero(
@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
     } else {
       return Scaffold(
         backgroundColor: sixtyUIColor,
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [
             HomeHero(

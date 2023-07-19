@@ -60,7 +60,7 @@ class _SolarPageState extends State<SolarPage> {
     if (!onMobile) {
       return Scaffold(
         backgroundColor: sixtyUIColor,
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [
             SolarHero(
@@ -99,7 +99,7 @@ class _SolarPageState extends State<SolarPage> {
     } else {
       return Scaffold(
         backgroundColor: sixtyUIColor,
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [
             SolarHero(

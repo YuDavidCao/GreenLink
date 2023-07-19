@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'SolarGuide',
+          title: 'GreenLink',
           theme: ThemeData(
             primarySwatch: const MaterialColor(0xFF60B45A, {
               50: Color(0xFF60B45A),

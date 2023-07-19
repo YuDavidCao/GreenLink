@@ -31,9 +31,18 @@ class HomeHero extends StatelessWidget {
         child: Stack(
           children: [
             Align(
-                alignment: Alignment.center,
-                child:
-                    Lottie.asset('assets/animation/home_hero_animation.json')),
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: sectionGapPadding,
+                    ),
+                    SizedBox(
+                        height: height - sectionGapPadding * 3,
+                        child: Lottie.asset(
+                            'assets/animation/home_hero_animation.json')),
+                  ],
+                )),
             DebuggingLayoutWidget(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

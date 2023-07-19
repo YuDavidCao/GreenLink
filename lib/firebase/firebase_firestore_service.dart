@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseFirestoreService {
   static Future<DocumentReference?> addPost(
       String userId,
+      String username,
       String title,
       String content,
       DateTime time,
@@ -15,6 +16,7 @@ class FirebaseFirestoreService {
     try {
       return await FirebaseFirestore.instance.collection("Post").add({
         "userId": userId,
+        "username": username,
         "title": title,
         "content": content,
         "time": time.toUtc(),
@@ -90,5 +92,29 @@ class FirebaseFirestoreService {
       "content": content,
       "haveImage": haveImage,
     });
+  }
+
+  static void addUserData(String email, String username) async {
+    final CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('User');
+    DocumentSnapshot documentSnapshot =
+        await collectionReference.doc(email).get();
+    if (!documentSnapshot.exists) {
+      collectionReference.doc(email).set({
+        "email": email,
+        "name": email.substring(0, 2).toUpperCase(),
+      });
+    }
+  }
+
+  static Future<String> getUserName(String userEmail) async {
+    String username = "unknown";
+    try {
+      username = (await FirebaseFirestore.instance
+          .collection("User")
+          .doc(userEmail)
+          .get())["name"];
+    } catch (e) {}
+    return username;
   }
 }

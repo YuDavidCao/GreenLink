@@ -84,7 +84,7 @@ class _WindPageState extends State<WindPage> {
     if (!onMobile) {
       return Scaffold(
         backgroundColor: sixtyUIColor,
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [
             WindHero(
@@ -129,7 +129,7 @@ class _WindPageState extends State<WindPage> {
     } else {
       return Scaffold(
         backgroundColor: sixtyUIColor,
-        appBar: globalAppBar(width, onMobile, context),
+        appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [
             WindHero(
