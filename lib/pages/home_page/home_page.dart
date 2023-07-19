@@ -1,14 +1,10 @@
-import 'dart:math';
-
-import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:solar_web/constants.dart';
 import 'package:solar_web/pages/home_page/home_hero.dart';
-import 'package:solar_web/pages/solar_page/solar_hero.dart';
 import 'package:solar_web/widgets/element_group_widget.dart';
-import 'package:solar_web/widgets/debugging_layout_widget.dart';
 import 'package:solar_web/widgets/global_app_bar.dart';
+import 'package:solar_web/widgets/global_drawer.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,37 +14,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const String heroTitleString =
-      "The Benefits of Solar Energy: A Guide to Evaluating Your Home";
+  static const String heroTitleString = "The Power of Renewable Energy";
   static const String heroContentString =
-      "Solar energy is clean, renewable, and increasingly affordable. By making the switch to solar power, homeowners can save money on energy bills, reduce their environmental impact, and gain energy independence. Here's how to evaluate your home for efficient solar panel installations:";
+      "Renewable energy is the solution to the environmental and economic challenges of this generation. It is reliable, sustainable, and produces zero emissions. Join us in the journey towards a brighter and cleaner future with renewable energy.";
 
   List<Image> costSavingImage = [
     Image.asset(
-      "assets/images/solar/CostSaving1.png",
+      "assets/images/home/CostSaving1.png",
       fit: BoxFit.cover,
     ),
     Image.asset(
-      "assets/images/solar/CostSaving2.jpeg",
+      "assets/images/home/CostSaving2.jpeg",
       fit: BoxFit.cover,
     ),
     Image.asset(
-      "assets/images/solar/CostSaving3.jpg",
+      "assets/images/home/CostSaving3.jpg",
       fit: BoxFit.cover,
     ),
   ];
 
   List<Image> environmentImpactImage = [
     Image.asset(
-      "assets/images/solar/EnvironmentImpact1.png",
+      "assets/images/home/EnvironmentImpact1.png",
       fit: BoxFit.cover,
     ),
     Image.asset(
-      "assets/images/solar/EnvironmentImpact2.png",
+      "assets/images/home/EnvironmentImpact2.jpg",
       fit: BoxFit.cover,
     ),
     Image.asset(
-      "assets/images/solar/EnvironmentImpact3.jpg",
+      "assets/images/home/EnvironmentImpact3.jpg",
       fit: BoxFit.cover,
     ),
   ];
@@ -61,7 +56,7 @@ class _HomeState extends State<Home> {
 
   List<String> environmentImpactTitle = [
     "Reduce Your Carbon Footprint",
-    "Limit Water Use",
+    "Improved air quality",
     "Reduce Pollution",
   ];
 
@@ -73,7 +68,7 @@ class _HomeState extends State<Home> {
 
   List<String> environmentImpactContent = [
     "By switching to clean renewable energy, homeowners can help reduce the amount of carbon emissions that contribute to climate change.",
-    "Solar panels use minimal water during operation, which can be particularly beneficial during periods of drought and water scarcity.",
+    "Unlike fossil fuels, renewable energy technologies like wind, solar, and hydroelectric power do not release harmful pollutants and particulates that contribute to air pollution and smog.",
     "By using clean energy, homeowners help reduce air pollution that can trigger a variety of health problems like asthma, lung cancer, and heart attacks.",
   ];
 
@@ -123,6 +118,7 @@ class _HomeState extends State<Home> {
       );
     } else {
       return Scaffold(
+        drawer: (!kIsWeb) ?  const GlobalDrawer(currentPage: "Home") : null,
         backgroundColor: sixtyUIColor,
         appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(

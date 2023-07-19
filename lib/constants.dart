@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const bool globalDebuggerFlag = true;
+const bool globalDebuggerFlag = false;
 
 const double globalEdgePadding = 20.0;
 

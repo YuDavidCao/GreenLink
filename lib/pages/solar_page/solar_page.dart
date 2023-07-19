@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:math';
 
 import 'package:collection/collection.dart';
@@ -8,6 +9,7 @@ import 'package:solar_web/pages/solar_page/solar_hero.dart';
 import 'package:solar_web/widgets/element_group_widget.dart';
 import 'package:solar_web/widgets/debugging_layout_widget.dart';
 import 'package:solar_web/widgets/global_app_bar.dart';
+import 'package:solar_web/widgets/global_drawer.dart';
 
 class SolarPage extends StatefulWidget {
   const SolarPage({super.key});
@@ -99,6 +101,7 @@ class _SolarPageState extends State<SolarPage> {
     } else {
       return Scaffold(
         backgroundColor: sixtyUIColor,
+        drawer: (!kIsWeb) ?  const GlobalDrawer(currentPage: "Solar") : null,
         appBar: globalAppBar(width, onMobile, context, height),
         body: ListView(
           children: [

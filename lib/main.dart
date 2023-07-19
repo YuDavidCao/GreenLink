@@ -12,6 +12,9 @@ import 'package:solar_web/pages/home_page/home_page.dart';
 import 'package:solar_web/pages/wind_page/wind_page.dart';
 import 'pages.dart';
 
+
+//! file solar_hero's commented part is it's web version
+
 Future<void> main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -53,7 +56,7 @@ class MyApp extends StatelessWidget {
               900: Color(0xFF60B45A),
             }),
           ),
-          initialRoute: '/Community',
+          initialRoute: '/Home',
           routes: {
             '/Home': (context) => const Home(),
             '/Solar': (context) => const SolarPage(),

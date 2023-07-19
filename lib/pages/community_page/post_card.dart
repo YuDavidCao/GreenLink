@@ -22,9 +22,11 @@ class PostCard extends StatefulWidget {
   final List<dynamic> tags;
   final bool alreadyUpvoted;
   final bool colorFlag;
+  final bool onMobile;
 
   const PostCard(
       {Key? key,
+      required this.onMobile,
       required this.documentId,
       required this.title,
       required this.content,
@@ -92,8 +94,14 @@ class _PostCardState extends State<PostCard> {
       );
     } else {
       return Container(
-        padding: const EdgeInsets.all(globalEdgePadding),
-        margin: const EdgeInsets.all(globalEdgePadding),
+        padding: (!widget.onMobile)
+            ? const EdgeInsets.all(globalEdgePadding)
+            : const EdgeInsets.fromLTRB(globalEdgePadding, globalMarginPadding,
+                globalEdgePadding, globalMarginPadding),
+        margin: (!widget.onMobile)
+            ? const EdgeInsets.all(globalEdgePadding)
+            : const EdgeInsets.fromLTRB(globalEdgePadding, globalMarginPadding,
+                globalEdgePadding, globalMarginPadding),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             border: Border.all(color: thirtyUIColor, width: 3)),
