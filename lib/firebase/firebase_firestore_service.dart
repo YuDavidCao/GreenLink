@@ -5,14 +5,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseFirestoreService {
   static Future<DocumentReference?> addPost(
-      String userId,
-      String username,
-      String title,
-      String content,
-      DateTime time,
-      List<String> tags,
-      bool haveImage,
-      BuildContext context) async {
+      {required String userId,
+      required String username,
+      required String title,
+      required String content,
+      required DateTime time,
+      required List<String> tags,
+      required bool haveImage,
+      required BuildContext context}) async {
     try {
       return await FirebaseFirestore.instance.collection("Post").add({
         "userId": userId,
@@ -105,6 +105,13 @@ class FirebaseFirestoreService {
         "name": email.substring(0, 2).toUpperCase(),
       });
     }
+  }
+
+  static Future<void> updateUserName(String newName, String userEmail) async {
+    FirebaseFirestore.instance
+        .collection("User")
+        .doc(userEmail)
+        .update({"name": newName});
   }
 
   static Future<String> getUserName(String userEmail) async {

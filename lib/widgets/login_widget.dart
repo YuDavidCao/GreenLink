@@ -26,8 +26,6 @@ void popupForm(BuildContext context, double width, double height,
           repeatPasswordController: repeatPasswordController,
         );
       });
-  passwordController.dispose();
-  emailController.dispose();
 }
 
 class LoginDialog extends StatefulWidget {
@@ -55,6 +53,14 @@ class LoginDialog extends StatefulWidget {
 class _LoginDialogState extends State<LoginDialog> {
   bool failed = false;
   bool login = true;
+
+  @override
+  void dispose() {
+    widget.repeatPasswordController.dispose();
+    widget.passwordController.dispose();
+    widget.emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +99,10 @@ class _LoginDialogState extends State<LoginDialog> {
                       border: OutlineInputBorder()),
                   keyboardType: TextInputType.multiline,
                   validator: (val) => val!.isEmpty ? 'Cannot be blank' : null,
+                  onFieldSubmitted: (String a) {
+                    loginHelper(widget.formKey, widget.emailController.text,
+                        widget.passwordController.text, login, context);
+                  },
                 ),
                 SizedBox(
                   width: 1,
@@ -109,6 +119,10 @@ class _LoginDialogState extends State<LoginDialog> {
                       border: OutlineInputBorder()),
                   keyboardType: TextInputType.multiline,
                   validator: (val) => val!.isEmpty ? 'Cannot be blank' : null,
+                  onFieldSubmitted: (String a) {
+                    loginHelper(widget.formKey, widget.emailController.text,
+                        widget.passwordController.text, login, context);
+                  },
                 ),
                 if (!login)
                   SizedBox(
@@ -126,6 +140,10 @@ class _LoginDialogState extends State<LoginDialog> {
                         labelText: 'repeat your password',
                         border: OutlineInputBorder()),
                     keyboardType: TextInputType.multiline,
+                    onFieldSubmitted: (String a) {
+                      loginHelper(widget.formKey, widget.emailController.text,
+                          widget.passwordController.text, login, context);
+                    },
                     validator: (val) {
                       if (val!.isEmpty) {
                         return 'Cannot be blank';
@@ -145,28 +163,9 @@ class _LoginDialogState extends State<LoginDialog> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () async {
-                      if (widget.formKey.currentState!.validate()) {
-                        if (login) {
-                          bool successful = await FirebaseAuthService
-                              .loginWithEmailAndPassword(
-                                  context,
-                                  widget.emailController.text,
-                                  widget.passwordController.text);
-                          if (mounted && successful) {
-                            Navigator.pop(context);
-                          }
-                        } else {
-                          bool successful = await FirebaseAuthService
-                              .signupWithEmailAndPassword(
-                                  context,
-                                  widget.emailController.text,
-                                  widget.passwordController.text);
-                          if (mounted && successful) {
-                            Navigator.pop(context);
-                          }
-                        }
-                      }
+                    onPressed: () {
+                      loginHelper(widget.formKey, widget.emailController.text,
+                          widget.passwordController.text, login, context);
                     },
                     child: Container(
                       padding: EdgeInsets.fromLTRB(
@@ -216,5 +215,24 @@ class _LoginDialogState extends State<LoginDialog> {
         ),
       ),
     );
+  }
+}
+
+void loginHelper(GlobalKey<FormState> formKey, String email, String password,
+    bool login, BuildContext context) async {
+  if (formKey.currentState!.validate()) {
+    if (login) {
+      bool successful = await FirebaseAuthService.loginWithEmailAndPassword(
+          context, email, password);
+      if (context.mounted && successful) {
+        Navigator.pop(context);
+      }
+    } else {
+      bool successful = await FirebaseAuthService.signupWithEmailAndPassword(
+          context, email, password);
+      if (context.mounted && successful) {
+        Navigator.pop(context);
+      }
+    }
   }
 }

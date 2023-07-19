@@ -1,13 +1,21 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:solar_web/constants.dart';
+import 'package:solar_web/controller/user_state.dart';
+import 'package:solar_web/firebase/firebase_auth_service.dart';
+import 'package:solar_web/firebase/firebase_firestore_service.dart';
 
 void changeProfileInfoPopup(BuildContext context, double width, double height,
     GlobalKey<FormState> formKey, String username) async {
   final TextEditingController usernameController = TextEditingController();
-  usernameController.text = await showDialog(
+  usernameController.text = username;
+  await showDialog(
       context: context,
       builder: (BuildContext context) {
         return LoginDialog(
@@ -67,6 +75,10 @@ class _LoginDialogState extends State<LoginDialog> {
                         height: globalEdgePadding,
                       )
                     : const SizedBox(),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Enter a new username:"),
+                ),
                 TextFormField(
                   controller: widget.usernameController,
                   textAlignVertical: TextAlignVertical.top,
@@ -83,7 +95,13 @@ class _LoginDialogState extends State<LoginDialog> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (widget.formKey.currentState!.validate()) {
-                        //TODO
+                        await FirebaseFirestoreService.updateUserName(
+                            widget.usernameController.text,
+                            Provider.of<UserState>(context, listen: false)
+                                .email);
+                        if (mounted) {
+                          Navigator.pop(context);
+                        }
                       }
                     },
                     child: Container(
@@ -116,7 +134,10 @@ class _LoginDialogState extends State<LoginDialog> {
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     onPressed: () async {
-                      //TODO
+                      await FirebaseAuthService.deleteUser();
+                      if (mounted) {
+                        Navigator.pop(context);
+                      }
                     },
                     child: Container(
                       padding: EdgeInsets.fromLTRB(
@@ -147,3 +168,34 @@ class _LoginDialogState extends State<LoginDialog> {
     );
   }
 }
+
+// showAlertDialog(BuildContext context) {
+//   Widget cancelButton = TextButton(
+//     child: const Text("Cancel"),
+//     onPressed: () {
+//       Navigator.pop(context);
+//     },
+//   );
+//   Widget continueButton = TextButton(
+//     child: const Text("Yes"),
+//     onPressed: () async {
+//       await FirebaseAuthService.deleteUser();
+//       if (context.mounted) {
+//         Navigator.pop(context);
+//       }
+//     },
+//   );
+//   AlertDialog alert = AlertDialog(
+//     content: const Text("Are you sure you want to delete your account?"),
+//     actions: [
+//       cancelButton,
+//       continueButton,
+//     ],
+//   );
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return alert;
+//     },
+//   );
+// }

@@ -97,7 +97,12 @@ class _CommunityState extends State<Community> {
         ),
         floatingActionButton: FloatingActionButton.large(
           onPressed: () {
-            Provider.of<AddingState>(context, listen: false).onPosting = true;
+            if (Provider.of<UserState>(context, listen: false).user != null) {
+              Provider.of<AddingState>(context, listen: false).onPosting = true;
+            } else {
+              final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+              popupForm(context, width, height, formKey);
+            }
             // popupForm(context, width, height, formKey);
             // FirebaseFirestoreService.addPost(
             //     Provider.of<UserState>(context, listen: false).email,

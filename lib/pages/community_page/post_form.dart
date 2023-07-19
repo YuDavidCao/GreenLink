@@ -87,16 +87,17 @@ class _PostFormState extends State<PostForm> {
                 FloatingActionButton(
                   onPressed: () async {
                     FirebaseFirestoreService.addPost(
-                        Provider.of<UserState>(context, listen: false).email,
-                        titleController.text,
-                        contentController.text,
-                        await FirebaseFirestoreService.getUserName(
+                        userId: Provider.of<UserState>(context, listen: false)
+                            .email,
+                        title: titleController.text,
+                        content: contentController.text,
+                        username: await FirebaseFirestoreService.getUserName(
                             Provider.of<UserState>(context, listen: false)
                                 .email),
-                        DateTime.now(),
-                        [],
-                        false,
-                        context);
+                        time: DateTime.now(),
+                        tags: [],
+                        haveImage: false,
+                        context: context);
                     if (mounted) {
                       Provider.of<AddingState>(context, listen: false)
                           .onPosting = false;

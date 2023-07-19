@@ -4,6 +4,7 @@ import 'package:solar_web/constants.dart';
 import 'package:solar_web/controller/user_state.dart';
 import 'package:solar_web/firebase/firebase_firestore_service.dart';
 import 'package:solar_web/widgets/change_profile_info_popup.dart';
+import 'package:solar_web/widgets/login_widget.dart';
 
 PreferredSizeWidget globalAppBar(
     double width, bool onMobile, BuildContext context, double height) {
@@ -86,14 +87,19 @@ PreferredSizeWidget globalAppBar(
                     onPressed: () async {
                       final GlobalKey<FormState> formKey =
                           GlobalKey<FormState>();
-                      changeProfileInfoPopup(
-                          context,
-                          width,
-                          height,
-                          formKey,
-                          await FirebaseFirestoreService.getUserName(
-                              Provider.of<UserState>(context, listen: false)
-                                  .email));
+                      if (Provider.of<UserState>(context, listen: false).user ==
+                          null) {
+                        popupForm(context, width, height, formKey);
+                      } else {
+                        changeProfileInfoPopup(
+                            context,
+                            width,
+                            height,
+                            formKey,
+                            await FirebaseFirestoreService.getUserName(
+                                Provider.of<UserState>(context, listen: false)
+                                    .email));
+                      }
                     },
                     icon: Icon(
                       Icons.person,
