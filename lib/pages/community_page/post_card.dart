@@ -136,12 +136,12 @@ class _PostCardState extends State<PostCard> {
                 const SizedBox(
                   height: globalMarginPadding,
                 ),
-                Text(
+                SelectableText(
                   widget.title,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 15),
                 ),
-                Text(
+                SelectableText(
                   widget.content,
                   style: const TextStyle(height: 1.5),
                 ),

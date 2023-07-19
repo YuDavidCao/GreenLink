@@ -47,19 +47,6 @@ PreferredSizeWidget globalAppBar(
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushReplacementNamed(
-                    "/Community",
-                  );
-                },
-                child: Text("Community",
-                    style:
-                        TextStyle(fontSize: textFontSize, color: Colors.white)),
-              ),
-              SizedBox(
-                width: appBarGap,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed(
                     "/Solar",
                   );
                 },
@@ -77,6 +64,19 @@ PreferredSizeWidget globalAppBar(
                   );
                 },
                 child: Text("Wind",
+                    style:
+                        TextStyle(fontSize: textFontSize, color: Colors.white)),
+              ),
+              SizedBox(
+                width: appBarGap,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacementNamed(
+                    "/Community",
+                  );
+                },
+                child: Text("Community",
                     style:
                         TextStyle(fontSize: textFontSize, color: Colors.white)),
               ),
@@ -167,4 +167,3 @@ PreferredSizeWidget globalAppBar(
     );
   }
 }
-
