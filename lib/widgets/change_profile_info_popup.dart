@@ -13,8 +13,6 @@ import 'package:solar_web/firebase/firebase_firestore_service.dart';
 
 void changeProfileInfoPopup(BuildContext context, double width, double height,
     GlobalKey<FormState> formKey, String username) async {
-  final TextEditingController usernameController = TextEditingController();
-  usernameController.text = username;
   await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -22,10 +20,9 @@ void changeProfileInfoPopup(BuildContext context, double width, double height,
           width: width,
           height: height,
           formKey: formKey,
-          usernameController: usernameController,
+          username: username,
         );
       });
-  usernameController.dispose();
 }
 
 class LoginDialog extends StatefulWidget {
@@ -34,19 +31,27 @@ class LoginDialog extends StatefulWidget {
     required this.width,
     required this.height,
     required this.formKey,
-    required this.usernameController,
+    required this.username,
   });
 
   final double width;
   final double height;
   final GlobalKey<FormState> formKey;
-  final TextEditingController usernameController;
+  final String username;
 
   @override
   State<LoginDialog> createState() => _LoginDialogState();
 }
 
 class _LoginDialogState extends State<LoginDialog> {
+  final TextEditingController usernameController = TextEditingController();
+
+  @override
+  void initState() {
+    usernameController.text = widget.username;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -80,7 +85,7 @@ class _LoginDialogState extends State<LoginDialog> {
                   child: Text("Enter a new username:"),
                 ),
                 TextFormField(
-                  controller: widget.usernameController,
+                  controller: usernameController,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: const InputDecoration(
                       isDense: true, border: OutlineInputBorder()),
@@ -96,7 +101,7 @@ class _LoginDialogState extends State<LoginDialog> {
                     onPressed: () async {
                       if (widget.formKey.currentState!.validate()) {
                         await FirebaseFirestoreService.updateUserName(
-                            widget.usernameController.text,
+                            usernameController.text,
                             Provider.of<UserState>(context, listen: false)
                                 .email);
                         if (mounted) {

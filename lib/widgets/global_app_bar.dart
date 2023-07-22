@@ -18,7 +18,7 @@ PreferredSizeWidget globalAppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          Row( 
             children: [
               SizedBox(
                 width: (!onMobile) ? width / 6 : globalEdgePadding,
