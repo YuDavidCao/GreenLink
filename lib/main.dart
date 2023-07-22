@@ -2,14 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/controller/adding_state.dart';
-import 'package:solar_web/controller/post_state.dart';
-import 'package:solar_web/controller/time_ticking_state.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase_options.dart';
-import 'package:solar_web/pages/community_page/community_page.dart';
-import 'package:solar_web/pages/home_page/home_page.dart';
-import 'package:solar_web/pages/wind_page/wind_page.dart';
+import 'package:GreenLink/controller/adding_state.dart';
+import 'package:GreenLink/controller/post_state.dart';
+import 'package:GreenLink/controller/time_ticking_state.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/firebase_options.dart';
+import 'package:GreenLink/pages/community_page/community_page.dart';
+import 'package:GreenLink/pages/home_page/home_page.dart';
+import 'package:GreenLink/pages/wind_page/wind_page.dart';
 import 'pages.dart';
 
 

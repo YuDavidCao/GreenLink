@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
 
 class EditForm extends StatefulWidget {
   final String title;

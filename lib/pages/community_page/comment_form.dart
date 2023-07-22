@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
 
 class CommentForm extends StatefulWidget {
   final String documentId;

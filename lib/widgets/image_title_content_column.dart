@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:solar_web/constants.dart';
+import 'package:GreenLink/constants.dart';
 
 class ImageTitleContentColumn extends StatelessWidget {
   final Image image;

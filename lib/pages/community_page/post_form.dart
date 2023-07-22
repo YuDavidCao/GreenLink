@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/adding_state.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/adding_state.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
 
 class PostForm extends StatefulWidget {
   const PostForm({super.key});

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase/firebase_auth_service.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/firebase/firebase_auth_service.dart';
 
 void popupForm(BuildContext context, double width, double height,
     GlobalKey<FormState> formKey) async {

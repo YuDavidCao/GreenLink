@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/time_ticking_state.dart';
-import 'package:solar_web/controller/utilities.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
-import 'package:solar_web/pages/community_page/comment_form.dart';
-import 'package:solar_web/pages/community_page/edit_form.dart';
-import 'package:solar_web/widgets/loading_screen.dart';
-import 'package:solar_web/widgets/upvote_button.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/time_ticking_state.dart';
+import 'package:GreenLink/controller/utilities.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/pages/community_page/comment_form.dart';
+import 'package:GreenLink/pages/community_page/edit_form.dart';
+import 'package:GreenLink/widgets/loading_screen.dart';
+import 'package:GreenLink/widgets/upvote_button.dart';
 
 class PostCard extends StatefulWidget {
   final String title;

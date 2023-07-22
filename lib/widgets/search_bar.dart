@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/post_state.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/post_state.dart';
 
 class GlobalSearchBar extends StatefulWidget {
   const GlobalSearchBar({super.key});

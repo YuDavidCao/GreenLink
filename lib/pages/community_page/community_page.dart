@@ -3,16 +3,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/controller/adding_state.dart';
-import 'package:solar_web/controller/post_state.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/pages/community_page/post_card.dart';
-import 'package:solar_web/pages/community_page/post_form.dart';
-import 'package:solar_web/widgets/global_app_bar.dart';
-import 'package:solar_web/widgets/global_drawer.dart';
-import 'package:solar_web/widgets/login_widget.dart';
-import 'package:solar_web/widgets/search_bar.dart';
-import 'package:solar_web/constants.dart';
+import 'package:GreenLink/controller/adding_state.dart';
+import 'package:GreenLink/controller/post_state.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/pages/community_page/post_card.dart';
+import 'package:GreenLink/pages/community_page/post_form.dart';
+import 'package:GreenLink/widgets/global_app_bar.dart';
+import 'package:GreenLink/widgets/global_drawer.dart';
+import 'package:GreenLink/widgets/login_widget.dart';
+import 'package:GreenLink/widgets/search_bar.dart';
+import 'package:GreenLink/constants.dart';
 
 class Community extends StatefulWidget {
   const Community({super.key});

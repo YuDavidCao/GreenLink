@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
 
 class UpvoteButton extends StatefulWidget {
   final bool alreadyUpvoted;

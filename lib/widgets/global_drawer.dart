@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/user_state.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/user_state.dart';
 
 class GlobalDrawer extends StatefulWidget {
   final String currentPage;
@@ -87,10 +87,10 @@ class _GlobalDrawerState extends State<GlobalDrawer> {
 
 // import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:solar_web/constants.dart';
-// import 'package:solar_web/controller/user_state.dart';
-// import 'package:solar_web/firebase/firebase_firestore_service.dart';
-// import 'package:solar_web/widgets/change_profile_info_popup.dart';
+// import 'package:GreenLink/constants.dart';
+// import 'package:GreenLink/controller/user_state.dart';
+// import 'package:GreenLink/firebase/firebase_firestore_service.dart';
+// import 'package:GreenLink/widgets/change_profile_info_popup.dart';
 
 // class GlobalDrawer extends StatefulWidget {
 //   final double width;

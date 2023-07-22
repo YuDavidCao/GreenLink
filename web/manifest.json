@@ -1,6 +1,6 @@
 {
-    "name": "solar_web",
-    "short_name": "solar_web",
+    "name": "GreenLink",
+    "short_name": "GreenLink",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

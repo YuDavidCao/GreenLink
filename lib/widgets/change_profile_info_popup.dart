@@ -6,10 +6,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase/firebase_auth_service.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/firebase/firebase_auth_service.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
 
 void changeProfileInfoPopup(BuildContext context, double width, double height,
     GlobalKey<FormState> formKey, String username) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
 
 class FirebaseAuthService {
   static Future<bool> loginWithEmailAndPassword(

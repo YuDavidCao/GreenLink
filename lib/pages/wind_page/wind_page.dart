@@ -4,13 +4,13 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/pages/solar_page/solar_hero.dart';
-import 'package:solar_web/pages/wind_page/wind_hero.dart';
-import 'package:solar_web/widgets/element_group_widget.dart';
-import 'package:solar_web/widgets/debugging_layout_widget.dart';
-import 'package:solar_web/widgets/global_app_bar.dart';
-import 'package:solar_web/widgets/global_drawer.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/pages/solar_page/solar_hero.dart';
+import 'package:GreenLink/pages/wind_page/wind_hero.dart';
+import 'package:GreenLink/widgets/element_group_widget.dart';
+import 'package:GreenLink/widgets/debugging_layout_widget.dart';
+import 'package:GreenLink/widgets/global_app_bar.dart';
+import 'package:GreenLink/widgets/global_drawer.dart';
 
 class WindPage extends StatefulWidget {
   const WindPage({super.key});

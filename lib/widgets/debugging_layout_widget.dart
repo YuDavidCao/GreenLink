@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solar_web/constants.dart';
+import 'package:GreenLink/constants.dart';
 
 class DebuggingLayoutWidget extends StatelessWidget {
   final Widget? child;

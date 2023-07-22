@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.solar_web">
+    package="com.example.GreenLink">
    <application
-        android:label="solar_web"
+        android:label="GreenLink"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

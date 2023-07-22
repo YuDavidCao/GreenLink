@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/widgets/image_title_content_column.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/widgets/image_title_content_column.dart';
 
 class ElementGroupWidget extends StatelessWidget {
   const ElementGroupWidget({

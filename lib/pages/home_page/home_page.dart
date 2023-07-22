@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/pages/home_page/home_hero.dart';
-import 'package:solar_web/widgets/element_group_widget.dart';
-import 'package:solar_web/widgets/global_app_bar.dart';
-import 'package:solar_web/widgets/global_drawer.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/pages/home_page/home_hero.dart';
+import 'package:GreenLink/widgets/element_group_widget.dart';
+import 'package:GreenLink/widgets/global_app_bar.dart';
+import 'package:GreenLink/widgets/global_drawer.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

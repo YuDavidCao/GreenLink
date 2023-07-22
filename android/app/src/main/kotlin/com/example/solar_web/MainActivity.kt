@@ -1,4 +1,4 @@
-package com.example.solar_web
+package com.example.GreenLink
 
 import io.flutter.embedding.android.FlutterActivity
 

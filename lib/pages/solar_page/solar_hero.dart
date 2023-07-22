@@ -3,7 +3,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:lottie/lottie.dart';
-// import 'package:solar_web/constants.dart';
+// import 'package:GreenLink/constants.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 // class SolarHero extends StatelessWidget {
@@ -186,7 +186,7 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:solar_web/constants.dart';
+import 'package:GreenLink/constants.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class SolarHero extends StatelessWidget {

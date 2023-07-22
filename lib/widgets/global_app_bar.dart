@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/user_state.dart';
-import 'package:solar_web/firebase/firebase_firestore_service.dart';
-import 'package:solar_web/widgets/change_profile_info_popup.dart';
-import 'package:solar_web/widgets/login_widget.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/user_state.dart';
+import 'package:GreenLink/firebase/firebase_firestore_service.dart';
+import 'package:GreenLink/widgets/change_profile_info_popup.dart';
+import 'package:GreenLink/widgets/login_widget.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 PreferredSizeWidget globalAppBar(

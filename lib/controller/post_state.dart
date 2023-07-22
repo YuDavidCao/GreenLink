@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:solar_web/constants.dart';
-import 'package:solar_web/controller/utilities.dart';
+import 'package:GreenLink/constants.dart';
+import 'package:GreenLink/controller/utilities.dart';
 
 class PostState extends ChangeNotifier {
   StreamSubscription<QuerySnapshot>? _subscription;
