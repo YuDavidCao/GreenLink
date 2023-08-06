@@ -30,8 +30,8 @@ class _SolarPageState extends State<SolarPage> {
   ];
 
   List<Image> installationImage2 = [
-    Image.asset("assets/images/solar/Installation3.jpg", fit: BoxFit.cover),
-    Image.asset("assets/images/solar/Installation4.jpg", fit: BoxFit.cover), 
+    Image.asset("assets/images/solar/3.jpg", fit: BoxFit.cover),
+    Image.asset("assets/images/solar/4.jpg", fit: BoxFit.cover), 
   ];
 
   List<String> installationTitle1 = [
